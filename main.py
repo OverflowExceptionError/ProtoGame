@@ -46,6 +46,40 @@ print("1. WD40 29rFgGB")
 print("2. EJAD 21D4 model")
 a = input(" BIOS > ")
 if a == "1":
-    pass # Call WD40
+    #WD40
+    os.system("cls")
+    print(Fore.WHITE)
+    print("Starting SFSROS")
+    try:
+        os.mkdir("filesys_sfsr")
+    except OSError:
+        pass
+    try:
+        os.mkdir("filesys_sfsr/sfsr")
+        os.mkdir("filesys_sfsr/users")
+        os.mkdir("filesys_sfsr/users/admin")
+        os.mkdir("filesys_sfsr/users/guest")
+        os.mkdir("filesys_sfsr/users/kids")
+        os.mkdir("filesys_sfsr/users/admin/documents")
+        os.mkdir("filesys_sfsr/users/admin/downloads")
+        os.mkdir("filesys_sfsr/users/guest/documents")
+        os.mkdir("filesys_sfsr/users/kids/documents")
+        os.mkdir("filesys_sfsr/users/guest/downloads")
+        os.mkdir("filesys_sfsr/users/kids/downloads")
+    print("System for Stupid Reasons")
+    time.sleep(2)
+    print("Sign in or use guest account.")
+    print("Options:")
+    print("1. Admin")
+    print("2. Kids")
+    print("3. Guest")
+    a = input(" > ")
+    if a == "1":
+        pass # Call admin prompt/login
+    if a == "2":
+        pass # Call kids prompt/login
+    if a == "3":
+        print("Hello, Guest.")
+        print("Type a command.")
 if a == "2":
     pass # Call secondary drive

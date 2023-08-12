@@ -52,9 +52,6 @@ if a == "1":
     print("Starting SFSROS")
     try:
         os.mkdir("filesys_sfsr")
-    except OSError:
-        pass
-    try:
         os.mkdir("filesys_sfsr/sfsr")
         os.mkdir("filesys_sfsr/users")
         os.mkdir("filesys_sfsr/users/admin")
@@ -66,6 +63,8 @@ if a == "1":
         os.mkdir("filesys_sfsr/users/kids/documents")
         os.mkdir("filesys_sfsr/users/guest/downloads")
         os.mkdir("filesys_sfsr/users/kids/downloads")
+    except OSError:
+        pass
     print("System for Stupid Reasons")
     time.sleep(2)
     print("Sign in or use guest account.")

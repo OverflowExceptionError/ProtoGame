@@ -73,6 +73,7 @@ if a == "1":
         f.close()
         f = open("filesys_sfsr/Note for Jacob.txt","w")
         f.write(obscure_text.root_message)
+        f.close()
     except OSError:
         pass
     print("System for Stupid Reasons")
@@ -98,7 +99,7 @@ if a == "1":
             if a[0] == "gensha256":
                 print("Administrators only command.")
                 shagen = hashlib.sha256()
-                shagen.update(tobytes(a[1]))
+                shagen.update(bytes(a[1]))
                 print(shagen.hexdigest())
 if a == "2":
     pass # Call secondary drive

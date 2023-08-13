@@ -1,6 +1,6 @@
 # IDK new game project i'm working on
 # VuLVE Software
-import obscure_text
+import obscure_text, hashlib
 import colorama, os, time, pygame
 colorama.init()
 from colorama import Fore, Back, Style
@@ -45,6 +45,11 @@ print("Options:")
 print("1. WD40 29rFgGB")
 print("2. EJAD 21D4 model")
 a = input(" BIOS > ")
+shagen = hashlib.sha256()
+def terminal_adults():
+    pass
+def terminal_kids():
+    pass
 if a == "1":
     #WD40
     os.system("cls")
@@ -63,6 +68,11 @@ if a == "1":
         os.mkdir("filesys_sfsr/users/kids/documents")
         os.mkdir("filesys_sfsr/users/guest/downloads")
         os.mkdir("filesys_sfsr/users/kids/downloads")
+        f = open("filesys_sfsr/users/guest/documents/Welcome.txt","w")
+        f.write(obscure_text.gu_we)
+        f.close()
+        f = open("filesys_sfsr/Note for Jacob.txt","w")
+        f.write(obscure_text.root_message)
     except OSError:
         pass
     print("System for Stupid Reasons")
@@ -80,5 +90,15 @@ if a == "1":
     if a == "3":
         print("Hello, Guest.")
         print("Type a command.")
+        running = True
+        directory = "/users/guest"
+        print("Type 'help' to see all commands.")
+        while running:
+            a = input(directory + " > ").split(" ")
+            if a[0] == "gensha256":
+                print("Administrators only command.")
+                shagen = hashlib.sha256()
+                shagen.update(tobytes(a[1]))
+                print(shagen.hexdigest())
 if a == "2":
     pass # Call secondary drive

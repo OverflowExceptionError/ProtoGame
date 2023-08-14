@@ -1,5 +1,10 @@
 # IDK new game project i'm working on
 # VuLVE Software
+class SFSRERR(Exception):
+    pass
+class KernelModuleRelogin:
+    def __init__(self):
+        raise SFSRERR("Relogin is disabled on this system.")
 import obscure_text, hashlib
 import colorama, os, time, pygame
 colorama.init()
@@ -87,6 +92,10 @@ if a == "1":
     if a == "1":
         pass # Call admin prompt/login
     if a == "2":
+        a = input(" Password > ")
+        sha = hashlib.sha256(a).hexdigest()
+        if sha == 'ad3f6075934de3ab20cc850f8339a1d446f8a87db08831d9f8c4e1cab8b1dc5e':
+            terminal_kids()
         pass # Call kids prompt/login
     if a == "3":
         print("Hello, Guest.")
@@ -99,7 +108,22 @@ if a == "1":
             if a[0] == "gensha256":
                 print("Administrators only command.")
                 shagen = hashlib.sha256()
-                shagen.update(bytes(a[1]))
+                shagen.update(a[1])
                 print(shagen.hexdigest())
+            if a[0] == "exit" or a[0] == "logout":
+                running = False
+        print("Oop! The OS crashed!")
+        print("STOP: 0x0000004A")
+        print("ERR_SYS_RELOGIN_DISABLED")
+        print("Performing traceback dump...")
+        f = open("traceback.txt","w")
+        f.write('''Traceback (most recent call last):
+  File "embedded:/sfsr/kernel.py", line 194, in KernelModuleRelogin
+    raise SFSRERR("Relogin is disabled on this system.")
+SFSRERR: Relogin is disabled on this system.''')
+        f.close()
+        print("Dumping kernel source section")
+        print("github.com/OverflowExceptionError/SFSR_Kernel/tree/main/modules/KernelModuleRelogin.py")
+        relogin = KernelModuleRelogin()
 if a == "2":
     pass # Call secondary drive

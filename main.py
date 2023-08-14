@@ -5,6 +5,15 @@ class SFSRERR(Exception):
 class KernelModuleRelogin:
     def __init__(self):
         raise SFSRERR("Relogin is disabled on this system.")
+class CollisionObject:
+    def __init__(self,x,y,w,h):
+        self.x = x
+        self.y = y
+        self.width = w
+        self.height = h
+    def check_overlap(self,x,y):
+        if x > self.x and x <= self.width and y > self.y and y <= self.height:
+            return true
 import obscure_text, hashlib
 import colorama, os, time, pygame
 colorama.init()
@@ -93,7 +102,7 @@ if a == "1":
         pass # Call admin prompt/login
     if a == "2":
         a = input(" Password > ")
-        sha = hashlib.sha256(a).hexdigest()
+        sha = hashlib.sha256(bytes(a,'utf-8')).hexdigest()
         if sha == 'ad3f6075934de3ab20cc850f8339a1d446f8a87db08831d9f8c4e1cab8b1dc5e':
             terminal_kids()
         pass # Call kids prompt/login
@@ -108,10 +117,39 @@ if a == "1":
             if a[0] == "gensha256":
                 print("Administrators only command.")
                 shagen = hashlib.sha256()
-                shagen.update(a[1])
+                shagen.update(bytes(a[1],'utf-8'))
                 print(shagen.hexdigest())
             if a[0] == "exit" or a[0] == "logout":
                 running = False
+            if a[0] == "pizzagame":
+                print("Running pizzagame from embedded:/sfsr/.builtin/pizzagame.py")
+                pygame.init()
+                print("PIZZA")
+                window = pygame.display.set_mode((640,480))
+                pygame.display.set_caption("PizzaGame Prototype v1.0.4b")
+                gamerun = True
+                isStable = False
+                import random
+                while gamerun:
+                    if isStable:
+                        window.fill((0,0,0))
+                    for e in pygame.event.get():
+                        if e.type == pygame.QUIT:
+                            if isStable:
+                                gamerun = False
+                            else:
+                                rand_num = random.randint(0,15)
+                                if rand_num == 15:
+                                    gamerun = False
+                                if rand_num == 4:
+                                    raise SFSRERR("Write violation.")
+                                if rand_num == 6:
+                                    raise SFSRERR("NOESCAPENOESCAPENOESCAPE")
+                                if rand_num == 5:
+                                    raise SFSRERR("Thank you for assuming the Party Escort Submission Position.")
+                                if rand_num == 1:
+                                    raise SFSRERR(" /users/guest > playdemo_science")
+                    pygame.display.update()
         print("Oop! The OS crashed!")
         print("STOP: 0x0000004A")
         print("ERR_SYS_RELOGIN_DISABLED")

@@ -150,6 +150,8 @@ if a == "1":
                                 if rand_num == 1:
                                     raise SFSRERR(" /users/guest > playdemo_science")
                     pygame.display.update()
+                window = None
+                pygame.quit()
         print("Oop! The OS crashed!")
         print("STOP: 0x0000004A")
         print("ERR_SYS_RELOGIN_DISABLED")
